@@ -1,0 +1,6 @@
+framework module Pods_ToTime_ToTimeUITests {
+  umbrella header "Pods-ToTime-ToTimeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
