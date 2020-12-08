@@ -13,4 +13,6 @@ extension UIColor {
     }
     
     static let lightBlue = UIColor.rgb(red: 239, green: 243, blue: 244)
+    static let ultraLightGray = UIColor.rgb(red: 230, green: 230, blue: 230)
+    static let middleBlue = UIColor.rgb(red: 29, green: 161, blue: 242)
 }
