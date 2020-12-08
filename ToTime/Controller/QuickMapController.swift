@@ -179,6 +179,7 @@ class QuickMapController: UIViewController {
         configureBottomView()
         configureButtonAction()
         
+        // TODO: - need to move somewhere in function
         viewModel.markIcons
             .subscribe(onNext: { marks in
                 marks.enumerated().forEach { [weak self] (index, image) in
@@ -196,6 +197,35 @@ class QuickMapController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    // MARK: - Helpers
+    
+    private func configureMapView() {
+//        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.rx
+            .regionDidChangeAnimated
+            .map { _ in CLLocation(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude) }
+            .bind(to: viewModel.didRegionChanged)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindViewModel() {
+        viewModel.didUpdateLocation
+            .subscribe(onNext: { [weak self] loc in
+                let span = MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009)
+                let region = MKCoordinateRegion(center: loc.coordinate, span: span)
+                self?.mapView.setRegion(region, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.didRegionChangedStr
+            .map { AppString.destination + ": " + $0 }
+            .bind(to: regionLabel.rx.text)
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Configurate UI
     
     private func configureBottomView() {
         let topStack = UIStackView(arrangedSubviews: [distanceFiftyButton,
@@ -292,31 +322,6 @@ class QuickMapController: UIViewController {
         }
         
         favoriteButton.setTitle("", for: .normal)
-    }
-    
-    private func configureMapView() {
-//        mapView.delegate = self
-        mapView.showsUserLocation = true
-        mapView.rx
-            .regionDidChangeAnimated
-            .map { _ in CLLocation(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude) }
-            .bind(to: viewModel.didRegionChanged)
-            .disposed(by: disposeBag)
-    }
-    
-    private func bindViewModel() {
-        viewModel.didUpdateLocation
-            .subscribe(onNext: { [weak self] loc in
-                let span = MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009)
-                let region = MKCoordinateRegion(center: loc.coordinate, span: span)
-                self?.mapView.setRegion(region, animated: true)
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.didRegionChangedStr
-            .map { AppString.destination + ": " + $0 }
-            .bind(to: regionLabel.rx.text)
-            .disposed(by: disposeBag)
     }
     
     private func configureUI() {
