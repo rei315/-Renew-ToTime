@@ -11,6 +11,8 @@ import SnapKit
 protocol MarkListHeaderDelegate: class {
     func handlePlusTapped()
     func handleQuickMapTapped()
+    func handleQuickSearchTapped(address: String)
+    func handleFieldChanged(address: String)
 }
 
 class MarkListHeader: UICollectionReusableView {
@@ -35,7 +37,18 @@ class MarkListHeader: UICollectionReusableView {
         tf.layer.borderColor = UIColor.lightGray.cgColor
         tf.layer.borderWidth = 1.5
         tf.layer.cornerRadius = 4.0
+        tf.addTarget(self, action: #selector(handleFieldChanged), for: .editingChanged)
         return tf
+    }()
+    private lazy var quickSearchButton: UIButton = {
+        let bt = UIButton()
+        bt.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        bt.backgroundColor = .lightBlue
+        bt.layer.borderColor = UIColor.lightGray.cgColor
+        bt.layer.borderWidth = 1.5
+        bt.layer.cornerRadius = 4.0
+        bt.addTarget(self, action: #selector(handleQuickSearchTapped), for: .touchUpInside)
+        return bt
     }()
     private lazy var quickMapButton: UIButton = {
         let bt = UIButton()
@@ -53,13 +66,19 @@ class MarkListHeader: UICollectionReusableView {
         label.font = UIFont.systemFont(ofSize: 25)
         return label
     }()
-    private lazy var plusButton: UIButton = {
-        let bt = UIButton()
-        bt.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-        bt.contentHorizontalAlignment = .fill
-        bt.contentVerticalAlignment = .fill
-        bt.addTarget(self, action: #selector(handlePlusTapped), for: .touchUpInside)
-        return bt
+//    private lazy var plusButton: UIButton = {
+//        let bt = UIButton()
+//        bt.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+//        bt.contentHorizontalAlignment = .fill
+//        bt.contentVerticalAlignment = .fill
+//        bt.addTarget(self, action: #selector(handlePlusTapped), for: .touchUpInside)
+//        return bt
+//    }()
+    
+    private lazy var seperator: UIImageView = {
+        let iv = UIImageView()
+        iv.backgroundColor = .ultraLightGray
+        return iv
     }()
     
     // MARK: - Lifecycle
@@ -81,11 +100,14 @@ class MarkListHeader: UICollectionReusableView {
         addSubview(addressTextField)
         addSubview(quickMapButton)
         addSubview(bookMarkLabel)
-        addSubview(plusButton)
+//        addSubview(plusButton)
+        addSubview(quickSearchButton)
+        addSubview(seperator)
         
         titleLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(15)
             make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
         }
         
         addressTextField.snp.makeConstraints { (make) in
@@ -94,25 +116,41 @@ class MarkListHeader: UICollectionReusableView {
             make.height.equalTo(quickMapButton.snp.height)
         }
         
-        quickMapButton.snp.makeConstraints { (make) in
+        quickSearchButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(addressTextField)
             make.left.equalTo(addressTextField.snp.right).offset(10)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
+        }
+        
+        quickMapButton.snp.makeConstraints { (make) in
+            make.centerY.equalTo(addressTextField)
+            make.left.equalTo(quickSearchButton.snp.right).offset(5)
             make.right.equalToSuperview().offset(-10)
             make.width.equalTo(50)
             make.height.equalTo(50)
         }
         
-        bookMarkLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(addressTextField.snp.bottom).offset(30)
-            make.left.equalToSuperview().offset(15)
+        seperator.snp.makeConstraints { (make) in
+            make.top.equalTo(addressTextField.snp.bottom).offset(20)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(10)
         }
         
-        plusButton.snp.makeConstraints { (make) in
-            make.centerY.equalTo(bookMarkLabel)
-            make.left.equalTo(bookMarkLabel.snp.right).offset(10)
-            make.width.equalTo(30)
-            make.height.equalTo(30)
+        bookMarkLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(seperator.snp.bottom).offset(15)
+            make.left.equalToSuperview().offset(15)
         }
+                        
+//        plusButton.snp.makeConstraints { (make) in
+//            make.centerY.equalTo(bookMarkLabel)
+//            make.left.equalTo(bookMarkLabel.snp.right).offset(10)
+//            make.width.equalTo(30)
+//            make.height.equalTo(30)
+//        }
+        
+        
     }
     
     // MARK: - Selectors
@@ -122,7 +160,16 @@ class MarkListHeader: UICollectionReusableView {
     }
     
     @objc func handleQuickMapTapped() {
-        guard addressTextField.text != nil else { return}
         delegate?.handleQuickMapTapped()
+    }
+    
+    @objc func handleQuickSearchTapped() {
+        guard let text = addressTextField.text else { return }
+        if text.isEmpty { return }
+        delegate?.handleQuickSearchTapped(address: text)
+    }
+    
+    @objc func handleFieldChanged() {
+        delegate?.handleFieldChanged(address: addressTextField.text ?? "")
     }
 }

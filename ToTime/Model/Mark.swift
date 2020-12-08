@@ -17,7 +17,7 @@ struct Mark: IdentifiableType, Equatable {
     var iconImage: UIImage?
     
     init(name: String, latitude: Double, longitude: Double, address: String, iconImage: UIImage) {
-        self.identity = "\(Date().timeIntervalSinceNow)"
+        self.identity = "\(Date())"
         self.name = name
         self.location = CLLocation(latitude: latitude, longitude: longitude)
         self.address = address
