@@ -237,11 +237,6 @@ extension HomeController: MarkListHeaderDelegate {
             .disposed(by: disposeBag)
     }
     
-    func handlePlusTapped() {
-        let controller = AddMarkController()
-        self.present(controller, animated: true, completion: nil)
-    }
-    
     func handleQuickMapTapped() {
         let QMViewModel = QuickMapViewModel(state: .quick, placeId: nil)
         let QMController = QuickMapController(viewModel: QMViewModel)

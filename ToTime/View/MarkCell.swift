@@ -73,4 +73,6 @@ class MarkCell: UICollectionViewCell {
     func configureItem(text: Mark) {
 //        print(text)
     }
+    
+    
 }

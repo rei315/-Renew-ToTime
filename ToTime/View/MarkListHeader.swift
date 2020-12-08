@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 protocol MarkListHeaderDelegate: class {
-    func handlePlusTapped()
     func handleQuickMapTapped()
     func handleQuickSearchTapped(address: String)
     func handleFieldChanged(address: String)
@@ -66,14 +65,6 @@ class MarkListHeader: UICollectionReusableView {
         label.font = UIFont.systemFont(ofSize: 25)
         return label
     }()
-//    private lazy var plusButton: UIButton = {
-//        let bt = UIButton()
-//        bt.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-//        bt.contentHorizontalAlignment = .fill
-//        bt.contentVerticalAlignment = .fill
-//        bt.addTarget(self, action: #selector(handlePlusTapped), for: .touchUpInside)
-//        return bt
-//    }()
     
     private lazy var seperator: UIImageView = {
         let iv = UIImageView()
@@ -100,7 +91,6 @@ class MarkListHeader: UICollectionReusableView {
         addSubview(addressTextField)
         addSubview(quickMapButton)
         addSubview(bookMarkLabel)
-//        addSubview(plusButton)
         addSubview(quickSearchButton)
         addSubview(seperator)
         
@@ -142,22 +132,9 @@ class MarkListHeader: UICollectionReusableView {
             make.top.equalTo(seperator.snp.bottom).offset(15)
             make.left.equalToSuperview().offset(15)
         }
-                        
-//        plusButton.snp.makeConstraints { (make) in
-//            make.centerY.equalTo(bookMarkLabel)
-//            make.left.equalTo(bookMarkLabel.snp.right).offset(10)
-//            make.width.equalTo(30)
-//            make.height.equalTo(30)
-//        }
-        
-        
     }
     
     // MARK: - Selectors
-    
-    @objc func handlePlusTapped() {
-        delegate?.handlePlusTapped()
-    }
     
     @objc func handleQuickMapTapped() {
         delegate?.handleQuickMapTapped()

@@ -26,7 +26,7 @@ class AddressCell: UITableViewCell {
         return iv
     }()
     
-    private var disposeBag = DisposeBag()
+//    private var disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -66,26 +66,9 @@ class AddressCell: UITableViewCell {
         }
     }
     
-    func mapItems(for searchRequest: MKLocalSearch) -> Observable<[MKMapItem]> {
-        return Observable.create { obserer in
-            searchRequest.start { (response, error) in
-                if let error = error {
-                    obserer.onError(error)
-                } else {
-                    obserer.onNext(response?.mapItems ?? [])
-                    obserer.onCompleted()
-                }
-            }
-            
-            return Disposables.create {
-                searchRequest.cancel()
-            }
-        }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        disposeBag = DisposeBag()
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//
+//        disposeBag = DisposeBag()
+//    }
 }

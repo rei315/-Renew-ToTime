@@ -28,7 +28,6 @@
 		8C45D857257CF244005A350A /* MarkListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D854257CF244005A350A /* MarkListHeader.swift */; };
 		8C45D858257CF244005A350A /* MarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D855257CF244005A350A /* MarkCell.swift */; };
 		8C45D85D257CF24C005A350A /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D85C257CF24C005A350A /* Mark.swift */; };
-		8C45D864257CF255005A350A /* AddMarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D861257CF255005A350A /* AddMarkController.swift */; };
 		8C45D865257CF255005A350A /* QuickMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D862257CF255005A350A /* QuickMapController.swift */; };
 		8C45D866257CF255005A350A /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D863257CF255005A350A /* HomeController.swift */; };
 		8C45D86B257CF25A005A350A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D86A257CF25A005A350A /* UIColor+Extension.swift */; };
@@ -93,7 +92,6 @@
 		8C45D854257CF244005A350A /* MarkListHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkListHeader.swift; sourceTree = "<group>"; };
 		8C45D855257CF244005A350A /* MarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkCell.swift; sourceTree = "<group>"; };
 		8C45D85C257CF24C005A350A /* Mark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
-		8C45D861257CF255005A350A /* AddMarkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMarkController.swift; sourceTree = "<group>"; };
 		8C45D862257CF255005A350A /* QuickMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickMapController.swift; sourceTree = "<group>"; };
 		8C45D863257CF255005A350A /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		8C45D86A257CF25A005A350A /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -251,7 +249,6 @@
 		8C45D847257CF226005A350A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8C45D861257CF255005A350A /* AddMarkController.swift */,
 				8C45D863257CF255005A350A /* HomeController.swift */,
 				8C45D862257CF255005A350A /* QuickMapController.swift */,
 				8CD69DD0257E1FA600A1924C /* SearchAddressController.swift */,
@@ -578,7 +575,6 @@
 				8C45D866257CF255005A350A /* HomeController.swift in Sources */,
 				8C45D84E257CF23E005A350A /* HomeViewModel.swift in Sources */,
 				8C45D86B257CF25A005A350A /* UIColor+Extension.swift in Sources */,
-				8C45D864257CF255005A350A /* AddMarkController.swift in Sources */,
 				8C430653257FD92200332413 /* BlankCollectionCell.swift in Sources */,
 				8C45D857257CF244005A350A /* MarkListHeader.swift in Sources */,
 			);
