@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		037C9DB69857E2222B71EB56 /* Pods_ToTime_ToTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2B1DCD338E331E4EC9E281 /* Pods_ToTime_ToTimeUITests.framework */; };
 		46B9FF63EA0BF5F0A2FA237E /* Pods_ToTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E72647E04FB7D8097D740B1 /* Pods_ToTimeTests.framework */; };
+		8C4305EE257F434400332413 /* AddressCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4305ED257F434400332413 /* AddressCellViewModel.swift */; };
+		8C430606257F6BF100332413 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C430605257F6BF100332413 /* Place.swift */; };
+		8C430611257F84C900332413 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C430610257F84C900332413 /* UIView+Extension.swift */; };
+		8C430619257F87F100332413 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C430618257F87F100332413 /* CornerView.swift */; };
+		8C43064E257FD09C00332413 /* MarkIcon in Resources */ = {isa = PBXBuildFile; fileRef = 8C43064D257FD09C00332413 /* MarkIcon */; };
+		8C430653257FD92200332413 /* BlankCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C430652257FD92200332413 /* BlankCollectionCell.swift */; };
 		8C45D807257CF1F6005A350A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D806257CF1F6005A350A /* AppDelegate.swift */; };
 		8C45D809257CF1F6005A350A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D808257CF1F6005A350A /* SceneDelegate.swift */; };
 		8C45D80E257CF1F6005A350A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C45D80C257CF1F6005A350A /* Main.storyboard */; };
@@ -28,7 +34,14 @@
 		8C45D86B257CF25A005A350A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D86A257CF25A005A350A /* UIColor+Extension.swift */; };
 		8C45D870257CF260005A350A /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D86F257CF260005A350A /* ResourceManager.swift */; };
 		8C45D875257CF265005A350A /* MarkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D874257CF265005A350A /* MarkSection.swift */; };
-		8C45D8B4257D11B9005A350A /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D8B3257D11B9005A350A /* Observable+Extension.swift */; };
+		8CD69DD1257E1FA600A1924C /* SearchAddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD69DD0257E1FA600A1924C /* SearchAddressController.swift */; };
+		8CD69DE0257E20B200A1924C /* AddressSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD69DDF257E20B200A1924C /* AddressSection.swift */; };
+		8CD69DE5257E20DB00A1924C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD69DE4257E20DB00A1924C /* Address.swift */; };
+		8CD69DEA257E237600A1924C /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD69DE9257E237600A1924C /* AddressCell.swift */; };
+		8CD69DEF257E239A00A1924C /* AddressSearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD69DEE257E239A00A1924C /* AddressSearchHeader.swift */; };
+		8CD69DF5257E36D600A1924C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD69DF4257E36D600A1924C /* App.swift */; };
+		8CD69E02257E8B0900A1924C /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD69E01257E8B0900A1924C /* TestController.swift */; };
+		8CD69E07257E9DF100A1924C /* Test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD69E06257E9DF100A1924C /* Test2ViewController.swift */; };
 		96FF6AB0E74FFDAD9CABD2D9 /* Pods_ToTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0E7BA3D6FC0F2E535B2931 /* Pods_ToTime.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +68,12 @@
 		6E72647E04FB7D8097D740B1 /* Pods_ToTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7753C9E9B45B2133EFBF90D8 /* Pods-ToTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-ToTimeTests/Pods-ToTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E0E7BA3D6FC0F2E535B2931 /* Pods_ToTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C4305ED257F434400332413 /* AddressCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCellViewModel.swift; sourceTree = "<group>"; };
+		8C430605257F6BF100332413 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		8C430610257F84C900332413 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		8C430618257F87F100332413 /* CornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
+		8C43064D257FD09C00332413 /* MarkIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MarkIcon; sourceTree = "<group>"; };
+		8C430652257FD92200332413 /* BlankCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankCollectionCell.swift; sourceTree = "<group>"; };
 		8C45D803257CF1F6005A350A /* ToTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C45D806257CF1F6005A350A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C45D808257CF1F6005A350A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,7 +99,14 @@
 		8C45D86A257CF25A005A350A /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8C45D86F257CF260005A350A /* ResourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
 		8C45D874257CF265005A350A /* MarkSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkSection.swift; sourceTree = "<group>"; };
-		8C45D8B3257D11B9005A350A /* Observable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
+		8CD69DD0257E1FA600A1924C /* SearchAddressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddressController.swift; sourceTree = "<group>"; };
+		8CD69DDF257E20B200A1924C /* AddressSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSection.swift; sourceTree = "<group>"; };
+		8CD69DE4257E20DB00A1924C /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		8CD69DE9257E237600A1924C /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
+		8CD69DEE257E239A00A1924C /* AddressSearchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchHeader.swift; sourceTree = "<group>"; };
+		8CD69DF4257E36D600A1924C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		8CD69E01257E8B0900A1924C /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
+		8CD69E06257E9DF100A1924C /* Test2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2ViewController.swift; sourceTree = "<group>"; };
 		9C2B1DCD338E331E4EC9E281 /* Pods_ToTime_ToTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToTime_ToTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB336CB8B477F9D405CE3331 /* Pods-ToTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToTime.release.xcconfig"; path = "Target Support Files/Pods-ToTime/Pods-ToTime.release.xcconfig"; sourceTree = "<group>"; };
 		DF7D21FEB528F5633EF399DC /* Pods-ToTime-ToTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToTime-ToTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-ToTime-ToTimeUITests/Pods-ToTime-ToTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +176,8 @@
 		8C45D805257CF1F6005A350A /* ToTime */ = {
 			isa = PBXGroup;
 			children = (
+				8C43064D257FD09C00332413 /* MarkIcon */,
+				8CD69DF3257E36CA00A1924C /* Constants */,
 				8C45D84B257CF233005A350A /* Helper */,
 				8C45D84A257CF22F005A350A /* Section */,
 				8C45D849257CF22C005A350A /* Common */,
@@ -191,6 +219,7 @@
 			children = (
 				8C45D84C257CF23E005A350A /* HomeViewModel.swift */,
 				8C45D84D257CF23E005A350A /* QuickMapViewModel.swift */,
+				8C4305ED257F434400332413 /* AddressCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -201,6 +230,10 @@
 				8C45D855257CF244005A350A /* MarkCell.swift */,
 				8C45D854257CF244005A350A /* MarkListHeader.swift */,
 				8C45D853257CF244005A350A /* PaddingTextField.swift */,
+				8CD69DE9257E237600A1924C /* AddressCell.swift */,
+				8CD69DEE257E239A00A1924C /* AddressSearchHeader.swift */,
+				8C430618257F87F100332413 /* CornerView.swift */,
+				8C430652257FD92200332413 /* BlankCollectionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -209,6 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				8C45D85C257CF24C005A350A /* Mark.swift */,
+				8CD69DE4257E20DB00A1924C /* Address.swift */,
+				8C430605257F6BF100332413 /* Place.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -219,6 +254,9 @@
 				8C45D861257CF255005A350A /* AddMarkController.swift */,
 				8C45D863257CF255005A350A /* HomeController.swift */,
 				8C45D862257CF255005A350A /* QuickMapController.swift */,
+				8CD69DD0257E1FA600A1924C /* SearchAddressController.swift */,
+				8CD69E01257E8B0900A1924C /* TestController.swift */,
+				8CD69E06257E9DF100A1924C /* Test2ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -227,7 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				8C45D86A257CF25A005A350A /* UIColor+Extension.swift */,
-				8C45D8B3257D11B9005A350A /* Observable+Extension.swift */,
+				8C430610257F84C900332413 /* UIView+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -243,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				8C45D874257CF265005A350A /* MarkSection.swift */,
+				8CD69DDF257E20B200A1924C /* AddressSection.swift */,
 			);
 			path = Section;
 			sourceTree = "<group>";
@@ -253,6 +292,14 @@
 				8C45D86F257CF260005A350A /* ResourceManager.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		8CD69DF3257E36CA00A1924C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8CD69DF4257E36D600A1924C /* App.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		DD8EFD3F06A03148D6F96314 /* Pods */ = {
@@ -376,6 +423,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C43064E257FD09C00332413 /* MarkIcon in Resources */,
 				8C45D813257CF1F7005A350A /* LaunchScreen.storyboard in Resources */,
 				8C45D810257CF1F7005A350A /* Assets.xcassets in Resources */,
 				8C45D80E257CF1F6005A350A /* Main.storyboard in Resources */,
@@ -506,20 +554,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C4305EE257F434400332413 /* AddressCellViewModel.swift in Sources */,
+				8C430606257F6BF100332413 /* Place.swift in Sources */,
+				8C430611257F84C900332413 /* UIView+Extension.swift in Sources */,
+				8CD69DD1257E1FA600A1924C /* SearchAddressController.swift in Sources */,
 				8C45D84F257CF23E005A350A /* QuickMapViewModel.swift in Sources */,
 				8C45D875257CF265005A350A /* MarkSection.swift in Sources */,
 				8C45D856257CF244005A350A /* PaddingTextField.swift in Sources */,
 				8C45D85D257CF24C005A350A /* Mark.swift in Sources */,
+				8CD69DE5257E20DB00A1924C /* Address.swift in Sources */,
+				8CD69DEA257E237600A1924C /* AddressCell.swift in Sources */,
 				8C45D870257CF260005A350A /* ResourceManager.swift in Sources */,
+				8CD69DE0257E20B200A1924C /* AddressSection.swift in Sources */,
 				8C45D807257CF1F6005A350A /* AppDelegate.swift in Sources */,
+				8CD69E02257E8B0900A1924C /* TestController.swift in Sources */,
+				8CD69DEF257E239A00A1924C /* AddressSearchHeader.swift in Sources */,
 				8C45D865257CF255005A350A /* QuickMapController.swift in Sources */,
+				8CD69E07257E9DF100A1924C /* Test2ViewController.swift in Sources */,
+				8CD69DF5257E36D600A1924C /* App.swift in Sources */,
 				8C45D858257CF244005A350A /* MarkCell.swift in Sources */,
+				8C430619257F87F100332413 /* CornerView.swift in Sources */,
 				8C45D809257CF1F6005A350A /* SceneDelegate.swift in Sources */,
 				8C45D866257CF255005A350A /* HomeController.swift in Sources */,
 				8C45D84E257CF23E005A350A /* HomeViewModel.swift in Sources */,
 				8C45D86B257CF25A005A350A /* UIColor+Extension.swift in Sources */,
-				8C45D8B4257D11B9005A350A /* Observable+Extension.swift in Sources */,
 				8C45D864257CF255005A350A /* AddMarkController.swift in Sources */,
+				8C430653257FD92200332413 /* BlankCollectionCell.swift in Sources */,
 				8C45D857257CF244005A350A /* MarkListHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

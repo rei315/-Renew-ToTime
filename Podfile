@@ -15,6 +15,8 @@ pod 'RxCoreData'
 pod 'RxCoreLocation'
 pod 'SnapKit'
 pod "RxMKMapView"
+pod 'Alamofire'
+pod 'RxGesture'
 
   target 'ToTimeTests' do
     inherit! :search_paths
