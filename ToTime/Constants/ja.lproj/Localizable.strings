@@ -1,0 +1,44 @@
+/* 
+  Localizable.strings
+  ToTime
+
+  Created by 김민국 on 2020/12/13.
+  
+*/
+
+"HomeTitle" = "지번, 도로명, 건물명을\n입력하세요";
+"AddressPlaceHolder" = "주소를 입력하세요";
+"FavoriteTitle" = "즐겨찾기";
+
+"SearchAddressTitle" = "목적지 주소";
+
+"QuickMapDistanceEdit" = "직접입력";
+"QuickMapStart" = "시작";
+"QuickMapNamePlaceHolder" = "이름을 입력하세요";
+"QuickMapAddFavorite" = "즐겨찾기 추가";
+"QuickMapDeleteFavorite" = " 즐겨찾기 수정 취소";
+"QuickMapModifyFavorite" = "즐겨찾기 수정";
+"QuickMapEditValuePlaceHolder" = "입력하세요";
+
+"ToTimeNotificationTitle" = "목적지에 도착하였습니다";
+"ToTimeNotificationBody" = "더 많은 정보를 보려면 클릭";
+
+"NotificationPermissionTitle" = "알림 권한 오류";
+"NotificationPermissionBody" = "알림에 대한 권한 설정을 해주세요";
+"LocationDeniedTitle" = "위치 권한 오류";
+"LocationDeniedBody" = "위치에 대한 권한 설정을 해주세요";
+"NotificationErrorTitle" = "오류 발생";
+"NotificationErrorBody" = "오류가 발생 하였습니다";
+
+"Enter" = "확인";
+"Destination" = "목적지";
+
+"InputError" = "입력 오류";
+"FavoriteAddressEmptyAlertMessage" = "주소를 다시 설정해주세요";
+"FavoriteNameEmptyAlertMessage" = "즐겨찾기 이름을 설정해주세요";
+"FavoriteImageEmptyAlertMessage" = "즐겨찾기 아이콘을 설정해주세요";
+
+"CreatedComplete" = "추가 완료";
+"UpdateComplete" = "수정 완료";
+"FavoriteCreated" = "즐겨찾기 추가 완료";
+"FavoriteUpdated" = "즐겨찾기 수정 완료";
