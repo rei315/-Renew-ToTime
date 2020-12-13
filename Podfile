@@ -6,7 +6,6 @@ target 'ToTime' do
   use_frameworks!
 
   # Pods for ToTime
-pod 'RealmSwift'
 pod 'RxSwift'
 pod 'RxCocoa'
 pod 'Action'
@@ -17,6 +16,7 @@ pod 'SnapKit'
 pod "RxMKMapView"
 pod 'Alamofire'
 pod 'RxGesture'
+pod 'RealmSwift', '~> 10.2'
 
   target 'ToTimeTests' do
     inherit! :search_paths
