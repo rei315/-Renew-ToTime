@@ -10,17 +10,25 @@ import MapKit
 import RxDataSources
 
 struct Mark: IdentifiableType, Equatable {
-    var identity: String?
+    
+    typealias Identity = String
+    var identity: String {
+        return id
+    }
+    
+    let id: String
     let name: String
     var location: CLLocation?
     let address: String
-    var iconImage: UIImage?
+    var iconImage: String
     
-    init(name: String, latitude: Double, longitude: Double, address: String, iconImage: UIImage) {
-        self.identity = "\(Date())"
+    init(identity: String, name: String, latitude: Double, longitude: Double, address: String, iconImage: String) {
+        self.id = identity
         self.name = name
         self.location = CLLocation(latitude: latitude, longitude: longitude)
-        self.address = address
+        self.address = address        
         self.iconImage = iconImage
     }
+    
+    
 }
