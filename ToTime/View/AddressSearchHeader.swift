@@ -6,39 +6,31 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol AddressSearchHeaderDelegate: class {
     func handleSearchTapped(address: String)
 }
 
-class AddressSearchHeader: UICollectionReusableView {
+class AddressSearchHeader: UIView {
     
     // MARK: - Property
     
     weak var delegate: AddressSearchHeaderDelegate?
     
     private lazy var addressField: UITextField = {
-        let tf = PaddingTextField(padding: 10)
-        tf.font = UIFont.systemFont(ofSize: 15)
-        tf.attributedPlaceholder = NSAttributedString(string: "주소를 입력하세요", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        
+        let tf = PaddingTextField(padding: 10, type: .Delete)
+        tf.font = UIFont.systemFont(ofSize: 18)
+        tf.attributedPlaceholder = NSAttributedString(string: AppString.AddressPlaceHolder.localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        tf.clearButtonMode = .always
+        tf.returnKeyType = .search
         return tf
-    }()
-    
-    private lazy var deleteButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "delete.left"), for: .normal)
-        button.addTarget(self, action: #selector(handleDeleteTapped), for: .touchUpInside)
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        button.tintColor = .lightGray
-        return button
     }()
     
     private lazy var searchButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        button.addTarget(self, action: #selector(handleSearchTapped), for: .touchUpInside)
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
         button.tintColor = .black
@@ -51,11 +43,14 @@ class AddressSearchHeader: UICollectionReusableView {
         return iv
     }()
     
+    let disposeBag = DisposeBag()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        configureAction()
     }
     
     required init?(coder: NSCoder) {
@@ -72,29 +67,21 @@ class AddressSearchHeader: UICollectionReusableView {
         backgroundColor = .white
         
         addSubview(addressField)
-        addSubview(deleteButton)
         addSubview(searchButton)
         addSubview(seperator)
         
         addressField.snp.makeConstraints { (make) in
-            make.left.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview()
+            make.left.equalToSuperview().offset(10)
             make.height.equalToSuperview()
+            make.right.equalTo(searchButton.snp.left).offset(-20)
         }
-        
-        deleteButton.snp.makeConstraints { (make) in
-            make.left.equalTo(addressField.snp.right).offset(3)
-            make.centerY.equalToSuperview()
-            make.width.equalTo(22)
-            make.height.equalTo(22)
-        }
-        
+                        
         searchButton.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(deleteButton.snp.right).offset(18)
+            make.centerY.equalTo(addressField)
             make.right.equalToSuperview().offset(-20)
-            make.width.equalTo(25)
-            make.height.equalTo(25)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
         }
         
         seperator.snp.makeConstraints { (make) in
@@ -105,18 +92,28 @@ class AddressSearchHeader: UICollectionReusableView {
         }
     }
     
+    // MARK: - Action
     
-    // MARK: - Selectors
+    private func configureAction() {
+        addressField.rx.controlEvent([.editingDidEndOnExit])
+            .subscribe(onNext: { [weak self] _ in
+                self?.handleSearchTapped()
+            })
+            .disposed(by: disposeBag)
+        
+        searchButton.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                self?.handleSearchTapped()
+            })
+            .disposed(by: disposeBag)
+    }
     
-    @objc func handleSearchTapped() {
+    // MARK: - Action Handler
+    
+    private func handleSearchTapped() {
         guard let text = addressField.text else { return }
         if text.isEmpty { return }
         delegate?.handleSearchTapped(address: text)
     }
-    
-    @objc func handleDeleteTapped() {
-        addressField.text = ""
-    }
-    
-    
 }

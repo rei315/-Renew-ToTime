@@ -15,18 +15,18 @@ class AddressCell: UITableViewCell {
     // MARK: - Property
     private let buildingLabel: UILabel = {
         let label = UILabel()
-        label.text = "test"
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .black
+        label.numberOfLines = 2
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
-    private lazy var seperator: UIImageView = {
+    private lazy var searchImage: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .ultraLightGray
+        iv.image = UIImage(systemName: "magnifyingglass")
         return iv
     }()
-    
-//    private var disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
@@ -43,7 +43,7 @@ class AddressCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Helpers
+    // MARK: - Configure UI
     
     func configurePlace(place: Place) {
         buildingLabel.text = place.placeName
@@ -51,24 +51,18 @@ class AddressCell: UITableViewCell {
     
     private func configureCell() {
         addSubview(buildingLabel)
-        addSubview(seperator)
+        addSubview(searchImage)
         
         buildingLabel.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(10)
-            make.right.greaterThanOrEqualToSuperview()
+            make.left.equalTo(searchImage.snp.right).offset(15)
+            make.right.equalToSuperview().offset(-10)
             make.centerY.equalToSuperview()
         }
-        seperator.snp.makeConstraints { (make) in
-            make.height.equalTo(1)
-            make.bottom.equalToSuperview()
-            make.left.equalToSuperview().offset(5)
-            make.right.equalToSuperview().offset(-5)
+        searchImage.snp.makeConstraints { (make) in
+            make.height.equalTo(frame.height/2)
+            make.width.equalTo(searchImage.snp.height)
+            make.centerY.equalTo(buildingLabel.snp.centerY)
+            make.left.equalToSuperview().offset(15)
         }
     }
-    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//
-//        disposeBag = DisposeBag()
-//    }
 }
