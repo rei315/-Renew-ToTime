@@ -17,13 +17,12 @@ class MarkCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "mark00042")
         return iv
     }()
     
     private let markLabel: UILabel = {
         let label = UILabel()
-        label.text = "test"
+        label.font = UIFont.systemFont(ofSize: 23)
         return label
     }()
     
@@ -45,7 +44,7 @@ class MarkCell: UICollectionViewCell {
     }
     
     // MARK: - Helpers
-    
+
     private func configureCell() {
         
         addSubview(iconImage)
@@ -59,7 +58,7 @@ class MarkCell: UICollectionViewCell {
             make.height.equalTo(iconImage.snp.width)
         }
         markLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(iconImage.snp.right).offset(15)
+            make.left.equalTo(iconImage.snp.right).offset(20)
             make.centerY.equalToSuperview()
         }
         seperator.snp.makeConstraints { (make) in
@@ -70,9 +69,8 @@ class MarkCell: UICollectionViewCell {
         }
     }
     
-    func configureItem(text: Mark) {
-//        print(text)
+    func configureItem(mark: Mark) {
+        markLabel.text = mark.name
+        iconImage.image = ResourceManager.shared.loadImageWithFileName(fileName: mark.iconImage)
     }
-    
-    
 }
