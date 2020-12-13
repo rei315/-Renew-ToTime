@@ -15,5 +15,4 @@ enum MarkSection {
 
 enum MarkSectionItem {
     case mark(mark: Mark)
-    case blank
 }
