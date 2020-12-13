@@ -154,6 +154,7 @@ class QuickMapController: UIViewController {
         tf.layer.cornerRadius = 4.0
         tf.allowsEditingTextAttributes = false
         tf.textAlignment = .center
+        tf.adjustsFontSizeToFitWidth = true
         return tf
     }()
     

@@ -25,6 +25,7 @@ class AddressSearchHeader: UIView {
         tf.attributedPlaceholder = NSAttributedString(string: AppString.AddressPlaceHolder.localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         tf.clearButtonMode = .always
         tf.returnKeyType = .search
+        tf.adjustsFontSizeToFitWidth = true
         return tf
     }()
     
