@@ -6,39 +6,39 @@
   
 */
 
-"HomeTitle" = "지번, 도로명, 건물명을\n입력하세요";
-"AddressPlaceHolder" = "주소를 입력하세요";
-"FavoriteTitle" = "즐겨찾기";
+"HomeTitle" = "地番、道路名、建物名を\n入力してください";
+"AddressPlaceHolder" = "住所を入力してください";
+"FavoriteTitle" = "ブックマーク";
 
-"SearchAddressTitle" = "목적지 주소";
+"SearchAddressTitle" = "目的地住所";
 
-"QuickMapDistanceEdit" = "직접입력";
-"QuickMapStart" = "시작";
-"QuickMapNamePlaceHolder" = "이름을 입력하세요";
-"QuickMapAddFavorite" = "즐겨찾기 추가";
-"QuickMapDeleteFavorite" = " 즐겨찾기 수정 취소";
-"QuickMapModifyFavorite" = "즐겨찾기 수정";
-"QuickMapEditValuePlaceHolder" = "입력하세요";
+"QuickMapDistanceEdit" = "直接入力";
+"QuickMapStart" = "スタート";
+"QuickMapNamePlaceHolder" = "ブックマークの名前";
+"QuickMapAddFavorite" = "ブックマーク追加";
+"QuickMapDeleteFavorite" = " ブックマーク修正キャンセル";
+"QuickMapModifyFavorite" = "ブックマーク修正";
+"QuickMapEditValuePlaceHolder" = "入力";
 
-"ToTimeNotificationTitle" = "목적지에 도착하였습니다";
-"ToTimeNotificationBody" = "더 많은 정보를 보려면 클릭";
+"ToTimeNotificationTitle" = "目的地に着きました";
+"ToTimeNotificationBody" = "より多くの情報を閲覧したい場合はクリック";
 
-"NotificationPermissionTitle" = "알림 권한 오류";
-"NotificationPermissionBody" = "알림에 대한 권한 설정을 해주세요";
-"LocationDeniedTitle" = "위치 권한 오류";
-"LocationDeniedBody" = "위치에 대한 권한 설정을 해주세요";
-"NotificationErrorTitle" = "오류 발생";
-"NotificationErrorBody" = "오류가 발생 하였습니다";
+"NotificationPermissionTitle" = "通知権限エラー";
+"NotificationPermissionBody" = "通知に対する権限設定をしてください";
+"LocationDeniedTitle" = "位置権限エラー";
+"LocationDeniedBody" = "位置に対する権限設定をしてください";
+"NotificationErrorTitle" = "エラー発生";
+"NotificationErrorBody" = "エラーが発生しました";
 
-"Enter" = "확인";
-"Destination" = "목적지";
+"Enter" = "完了";
+"Destination" = "目的地";
 
-"InputError" = "입력 오류";
-"FavoriteAddressEmptyAlertMessage" = "주소를 다시 설정해주세요";
-"FavoriteNameEmptyAlertMessage" = "즐겨찾기 이름을 설정해주세요";
-"FavoriteImageEmptyAlertMessage" = "즐겨찾기 아이콘을 설정해주세요";
+"InputError" = "入力エラー";
+"FavoriteAddressEmptyAlertMessage" = "アドレスをもう一度設定してください";
+"FavoriteNameEmptyAlertMessage" = "ブックマークの名前を設定してください";
+"FavoriteImageEmptyAlertMessage" = "ブックマークアイコンを設定してください";
 
-"CreatedComplete" = "추가 완료";
-"UpdateComplete" = "수정 완료";
-"FavoriteCreated" = "즐겨찾기 추가 완료";
-"FavoriteUpdated" = "즐겨찾기 수정 완료";
+"CreatedComplete" = "追加完了";
+"UpdateComplete" = "修正済み";
+"FavoriteCreated" = "ブックマーク 追加完了";
+"FavoriteUpdated" = "ブックマーク 修正済み";
