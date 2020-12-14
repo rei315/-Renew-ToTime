@@ -1,6 +1,9 @@
 # -Renew-ToTime
 Renewed Version of ToTime Application
+
 IOS Application that alerts you when you reach the distance you have set
+
+Languages supported: Korean, English, Japanese
 
 # Installation
 pod install
