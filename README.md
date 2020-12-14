@@ -22,7 +22,7 @@ pod install
 3. Change Fish Image
 
 ## Critical Issue
-<img width="560" alt="스크린샷 2020-12-14 오후 9 30 01" src="https://user-images.githubusercontent.com/27776755/102081595-d6177000-3e53-11eb-9cbe-c6bf0d406897.png">
+<img width="280" alt="스크린샷 2020-12-14 오후 9 30 01" src="https://user-images.githubusercontent.com/27776755/102081595-d6177000-3e53-11eb-9cbe-c6bf0d406897.png">
 Apple MapView centerCoordinate is not working properly (Pin is center of MapView) with AutoLayout
 Will change to Google Map
 
