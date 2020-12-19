@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 class ToTimeProgressController: UIViewController {
 
@@ -19,12 +20,22 @@ class ToTimeProgressController: UIViewController {
     private weak var displayLink: CADisplayLink?
     private var startTime: CFTimeInterval = 0
     
+    private var isFishSetup: Bool = false
+    private let fishImageView = UIImageView(image: UIImage(named: "Fish"))
+    
     private let shapeLayer: CAShapeLayer = {
         let shapeLayer = CAShapeLayer()
         shapeLayer.strokeColor = UIColor.white.cgColor
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = 3
         return shapeLayer
+    }()
+    
+    private lazy var seperator: UIImageView = {
+        let iv = UIImageView()
+        iv.backgroundColor = .ultraLightGray
+        iv.layer.cornerRadius = 1.5
+        return iv
     }()
     
     // MARK: - Lifecycle
@@ -42,15 +53,55 @@ class ToTimeProgressController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel.startLocationNotification()
-
+        startUpdatingLocation()
         bindViewModel()
+    }
+
+    func scheduledTimerWithTimeInterval() {
+//        let _ = Timer.scheduledTimer(timeInterval: 2.9, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+    }
+    
+    @objc func update() {
+        self.fishImageView.layer.removeAllAnimations()
+        let randomCGFloat = CGFloat.random(in: 0...self.view.frame.maxX*0.9)
+        self.fishImageView.center = CGPoint(x: randomCGFloat, y: self.view.frame.midY)
+        
+        let path = UIBezierPath()
+        
+        path.move(to: CGPoint(x: randomCGFloat, y: self.view.frame.midY))
+        path.addQuadCurve(to: CGPoint(x: self.view.frame.maxX+randomCGFloat, y: self.view.frame.midY), controlPoint: CGPoint(x: self.view.frame.midX+randomCGFloat, y: 0))
+        
+        let animation = CAKeyframeAnimation(keyPath: "position")
+        animation.path = path.cgPath
+
+        animation.duration = 1.5
+        animation.repeatCount = 2
+        
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotationAnimation.fromValue = -Double.pi/4
+        rotationAnimation.toValue = Double.pi/4
+        rotationAnimation.duration = 1.5
+        rotationAnimation.repeatCount = 2
+        
+        self.fishImageView.layer.add(animation, forKey: "position")
+        self.fishImageView.layer.add(rotationAnimation, forKey: "rotation")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.stopUpdatingLocation()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureUI()
+        animateFish()
+    }
+        
+    // MARK: - Helpers
+    
+    func startUpdatingLocation() {
+        viewModel.startLocationNotification()
     }
     
     
@@ -70,10 +121,19 @@ class ToTimeProgressController: UIViewController {
     // MARK: - Configure UI
     
     func configureUI() {
-        view.backgroundColor = .blue
+        view.backgroundColor = .middleBlue
+        
+        view.addSubview(seperator)
+        seperator.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
+            make.height.equalTo(3)
+            make.width.equalToSuperview().multipliedBy(0.25)
+        }
+        
         view.layer.addSublayer(shapeLayer)
         startDisplayLink()
-        animateFish()
+        
     }
     
     // MARK: - Helpers
@@ -117,38 +177,38 @@ class ToTimeProgressController: UIViewController {
     }
     
     func animateFish() {
-        let duration = 1.7
+        if isFishSetup { return }
+        isFishSetup = !isFishSetup
         
+        let duration = 1.5
+
+        fishImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        fishImageView.backgroundColor = .clear
+
+        self.view.addSubview(fishImageView)
+
         let path = UIBezierPath()
-        
-        let imageFishName = "Fish"
-        let imageFish = UIImage(named: imageFishName)
-        let imageView = UIImageView(image: imageFish)
-        
-        imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        imageView.backgroundColor = .clear
-        
-        self.view.addSubview(imageView)
-        
         path.move(to: CGPoint(x: 0, y: self.view.frame.midY))
         path.addQuadCurve(to: CGPoint(x: self.view.frame.maxX, y: self.view.frame.midY), controlPoint: CGPoint(x: self.view.frame.midX, y: 0))
-        
+
         let animation = CAKeyframeAnimation(keyPath: "position")
         animation.path = path.cgPath
 
         animation.duration = duration
         animation.repeatCount = .infinity
-        
+
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotationAnimation.fromValue = -Double.pi/4
         rotationAnimation.toValue = Double.pi/4
         rotationAnimation.duration = duration
         rotationAnimation.repeatCount = .infinity
+
+        fishImageView.layer.add(animation, forKey: "position")
+        fishImageView.layer.add(rotationAnimation, forKey: nil)
         
-        imageView.layer.add(animation, forKey: nil)
-        imageView.layer.add(rotationAnimation, forKey: nil)
+        fishImageView.center = CGPoint(x: 0, y: self.view.frame.midY)
         
-        imageView.center = CGPoint(x: 0, y: self.view.frame.midY)
+        scheduledTimerWithTimeInterval()
     }
 }
 

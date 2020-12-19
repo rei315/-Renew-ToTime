@@ -36,13 +36,22 @@ class ToTimeProgressViewModel {
         didUpdateLocations()
     }
     
-    
     // MARK: - Helpers
     
     func startLocationNotification() {
         locationManager.startUpdatingLocation()
     }
+
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
+        locationManager.allowsBackgroundLocationUpdates = false
+        locationManager.showsBackgroundLocationIndicator = false
+    }
+    
     func stopLocationNotification(info: LocationNotificationInfo) {
+        locationManager.stopUpdatingLocation()
+        locationManager.allowsBackgroundLocationUpdates = false
+        locationManager.showsBackgroundLocationIndicator = false
         locationNotificationScheduler.request(with: info)
     }
     
@@ -62,7 +71,6 @@ class ToTimeProgressViewModel {
                     let dis = location.distance(from: setLocation)
                     if (dis < Double(setDistance)) {
                         self?.didArrivedLocation.onNext(())
-                        self?.locationManager.stopUpdatingLocation()
                     }
                 }
             })

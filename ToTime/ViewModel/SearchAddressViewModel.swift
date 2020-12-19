@@ -30,7 +30,7 @@ class SearchAddressViewModel {
         configureSearch()
         
         searchText.accept(address)
-    }
+    }        
     
     private func configureLocation() {
         locatoinManager.desiredAccuracy = kCLLocationAccuracyBest

@@ -116,7 +116,7 @@ class QuickMapController: UIViewController {
         view.layer.cornerRadius = 15
         return view
     }()
-    
+
     private lazy var valueTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.systemFont(ofSize: 20)
@@ -213,21 +213,24 @@ class QuickMapController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.topItem?.title = ""
+        configureUI()
+        configureBottomView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        configureMapView()
-        configureBottomView()
+        
         configureButtonAction()
         bindViewModel()
+        configureMapView()
     }
     
     // MARK: - Configure MapView
     
     private func configureMapView() {
-        mapView.delegate = self
+        mapView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
         mapView.showsUserLocation = true
         mapView.rx
             .regionDidChangeAnimated
@@ -259,6 +262,7 @@ class QuickMapController: UIViewController {
         let cllDistance = CLLocationDistance(distance)
         let circle = MKCircle(center: self.mapView.centerCoordinate, radius: cllDistance)
         mapView.addOverlay(circle)
+        
     }
     
     private func getValueFromField(valueStr: String) -> Int {
@@ -310,7 +314,7 @@ class QuickMapController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.didRegionChangedStr
-            .map { AppString.Destination + ": " + $0 }
+            .map { AppString.Destination.localized() + ": " + $0 }
             .bind(to: regionLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -367,7 +371,6 @@ class QuickMapController: UIViewController {
         bottomView.addSubview(regionLabel)
         bottomView.addSubview(favoriteButton)
         bottomView.addSubview(startButton)
-        
         
         view.addSubview(bottomView)
                         
@@ -518,7 +521,7 @@ class QuickMapController: UIViewController {
             make.top.equalToSuperview()
             make.bottom.equalToSuperview().offset(-(BottomViewHeight*0.97))
         }
-
+        
         valueEditDimView.addSubview(valueEditView)
         valueEditDimView.addSubview(valueEditExitButton)
         valueEditView.addSubview(valueTextField)

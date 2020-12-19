@@ -83,7 +83,6 @@ class QuickMapViewModel {
         switch state {
         case .quick:
             configureQuick()
-            break
         case .search:
             configureSearch(placeId: placeId ?? "")
         case .favorite:
@@ -94,6 +93,8 @@ class QuickMapViewModel {
     // MARK: - Helpers
     
     private func configureFavorite(locatoin: CLLocation) {
+        model.startUpdatingLocation()
+        
         Observable.just(locatoin)
             .subscribe(onNext: { [weak self] loc in
                 self?.didUpdateLocation.accept(loc)
@@ -102,12 +103,14 @@ class QuickMapViewModel {
     }
     
     private func configureSearch(placeId: String) {
+        model.startUpdatingLocation()
+        
         let detail = model.fetchAddressDetail(placeId: placeId)
         
         detail
             .map { ($0.location ?? CLLocation(latitude: 0.0, longitude: 0.0)) }
-            .subscribe(onNext: { [unowned self] location in
-                didUpdateLocation.accept(location)
+            .subscribe(onNext: { [weak self] location in
+                self?.didUpdateLocation.accept(location)
             })
             .disposed(by: disposeBag)
     }
@@ -119,8 +122,8 @@ class QuickMapViewModel {
 
         updateLocation?
             .map { ($0.locations.last ?? CLLocation(latitude: 0.0, longitude: 0.0)) }
-            .subscribe(onNext: { [unowned self] location in
-                didUpdateLocation.accept(location)
+            .subscribe(onNext: { [weak self] location in
+                self?.didUpdateLocation.accept(location)
             })
             .disposed(by: disposeBag)
     }
@@ -151,9 +154,8 @@ class QuickMapViewModel {
                     self?.permissionError.accept(())
                 case .notDetermined:
                     self?.model.manager?.requestAlwaysAuthorization()
-                    fallthrough
                 @unknown default:
-                    fatalError()
+                    break
                 }
             })
             .disposed(by: disposeBag)

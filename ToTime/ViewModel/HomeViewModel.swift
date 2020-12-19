@@ -15,7 +15,6 @@ class HomeViewModel {
     let disposeBag = DisposeBag()
     
     let items = BehaviorRelay<[MarkSectionModel]>(value: [])
-    
     let model = HomeModel()
     
     // MARK: - Lifecycle
