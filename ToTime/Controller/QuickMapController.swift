@@ -9,11 +9,11 @@ import UIKit
 import RxCoreLocation
 import RxSwift
 import RxCocoa
-import CoreLocation
-import MapKit
-import RxMKMapView
 import SnapKit
 import RxGesture
+
+import GoogleMaps
+import RxGoogleMaps
 
 private let BottomViewHeight: CGFloat = 220
 
@@ -33,13 +33,13 @@ class QuickMapController: UIViewController {
     let disposeBag = DisposeBag()
     var viewModel: QuickMapViewModel!
     
-    let mapView: MKMapView = MKMapView()
+    let mapView: GMSMapView = GMSMapView()
     
     var editViewState: EditViewState = .off
     var editState: EditState = .none
     var distanceState: DistanceState = .Fifty
     
-    private lazy var regionLabel: UILabel = {
+    private let regionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 18)
@@ -48,13 +48,13 @@ class QuickMapController: UIViewController {
         return label
     }()
     
-    private lazy var bottomView: UIView = {
+    private let bottomView: UIView = {
         let bView = CornerView(cornerRadius: 12)
         bView.backgroundColor = .lightBlue
         return bView
     }()
     
-    private lazy var distanceFiftyButton: UIButton = {
+    private let distanceFiftyButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 5
         bt.backgroundColor = .lightGray
@@ -63,7 +63,7 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var distanceHundredButton: UIButton = {
+    private let distanceHundredButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 5
         bt.backgroundColor = .lightGray
@@ -71,7 +71,7 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var distanceThousandButton: UIButton = {
+    private let distanceThousandButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 5
         bt.backgroundColor = .lightGray
@@ -79,7 +79,7 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var distanceEditButton: UIButton = {
+    private let distanceEditButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 5
         bt.backgroundColor = .lightGray
@@ -87,7 +87,7 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var favoriteButton: UIButton = {
+    private let favoriteButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 8
         bt.backgroundColor = .middleBlue
@@ -96,7 +96,7 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var startButton: UIButton = {
+    private let startButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 8
         bt.backgroundColor = .middleBlue
@@ -104,20 +104,20 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var valueEditDimView: UIView = {
+    private let valueEditDimView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         return view
     }()
     
-    private lazy var valueEditView: UIView = {
+    private let valueEditView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 15
         return view
     }()
 
-    private lazy var valueTextField: UITextField = {
+    private let valueTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.systemFont(ofSize: 20)
         tf.textColor = .black
@@ -128,7 +128,7 @@ class QuickMapController: UIViewController {
         return tf
     }()
     
-    private lazy var valueEditButton: UIButton = {
+    private let valueEditButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 8
         bt.backgroundColor = .middleBlue
@@ -136,7 +136,7 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var valueEditExitButton: UIButton = {
+    private let valueEditExitButton: UIButton = {
         let bt = UIButton()
         bt.setImage(UIImage(systemName: "multiply.circle"), for: .normal)
         bt.contentHorizontalAlignment = .fill
@@ -144,11 +144,10 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var favoriteField: PaddingTextField = {
+    private let favoriteField: PaddingTextField = {
         let tf = PaddingTextField(padding: 10, type: .Default)
         tf.font = UIFont.systemFont(ofSize: 18)
         tf.attributedPlaceholder = NSAttributedString(string: AppString.QuickMapNamePlaceHolder.localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-//        tf.backgroundColor = .lightBlue
         tf.layer.borderColor = UIColor.middleBlue.cgColor
         tf.layer.borderWidth = 1.5
         tf.layer.cornerRadius = 4.0
@@ -158,13 +157,13 @@ class QuickMapController: UIViewController {
         return tf
     }()
     
-    private lazy var favoriteView: UIView = {
+    private let favoriteView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightBlue
         return view
     }()
     
-    private lazy var favoriteIconButton: UIButton = {
+    private let favoriteIconButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 8
         bt.backgroundColor = .lightGray
@@ -173,7 +172,7 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var favoriteCreateButton: UIButton = {
+    private let favoriteCreateButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 8
         bt.backgroundColor = .middleBlue
@@ -182,7 +181,7 @@ class QuickMapController: UIViewController {
         return bt
     }()
     
-    private lazy var favoriteDeleteButton: UIButton = {
+    private let favoriteDeleteButton: UIButton = {
         let bt = UIButton()
         bt.layer.cornerRadius = 8
         bt.backgroundColor = .middleBlue
@@ -191,6 +190,13 @@ class QuickMapController: UIViewController {
         return bt
     }()
 
+    private let markImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "pin")
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+    
     private var imageURL: String = ""
     
     // MARK: - Lifecycle
@@ -228,21 +234,22 @@ class QuickMapController: UIViewController {
     // MARK: - Configure MapView
     
     private func configureMapView() {
-        mapView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
-        
-        mapView.showsUserLocation = true
-        mapView.rx
-            .regionDidChangeAnimated
-            .map { _ in CLLocation(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude) }
+        mapView.rx.idleAt
+            .map { [weak self] _ in
+                let center = self?.mapView.projection.coordinate(for: self?.mapView.center ?? CGPoint()) ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                return CLLocation(latitude: center.latitude, longitude: center.longitude)
+            }
             .bind(to: viewModel.didRegionChanged)
             .disposed(by: disposeBag)
-        mapView.rx
-            .regionDidChangeAnimated
-            .subscribe(onNext: { [weak self] _ in
+        
+        mapView.rx.idleAt.asDriver()
+            .drive(onNext: { [weak self] _ in
                 self?.showCircle(meter: self?.distanceState ?? .Fifty)
             })
             .disposed(by: disposeBag)
+
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
     }
     
     
@@ -257,12 +264,13 @@ class QuickMapController: UIViewController {
             distance = radius.rawValue
         }
 
-        mapView.removeOverlays(mapView.overlays)
-
+        mapView.clear()
         let cllDistance = CLLocationDistance(distance)
-        let circle = MKCircle(center: self.mapView.centerCoordinate, radius: cllDistance)
-        mapView.addOverlay(circle)
-        
+        let circle = GMSCircle(position: mapView.projection.coordinate(for: mapView.center), radius: cllDistance)
+        circle.fillColor = UIColor.red.withAlphaComponent(0.2)
+        circle.strokeColor = UIColor.red
+        circle.strokeWidth = 1
+        circle.map = mapView
     }
     
     private func getValueFromField(valueStr: String) -> Int {
@@ -297,7 +305,8 @@ class QuickMapController: UIViewController {
     // MARK: - Bind ViewModel
     
     private func bindViewModel() {
-        mapView.rx.didFinishLoadingMap
+        
+        mapView.rx.didFinishTileRendering
             .take(1)
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.configureState()
@@ -307,9 +316,8 @@ class QuickMapController: UIViewController {
         viewModel.didUpdateLocation
             .take(1)
             .subscribe(onNext: { [weak self] loc in
-                let span = MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009)
-                let region = MKCoordinateRegion(center: loc.coordinate, span: span)
-                self?.mapView.setRegion(region, animated: true)
+                let region = GMSCameraPosition.camera(withLatitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude, zoom: 15)
+                self?.mapView.camera = region
             })
             .disposed(by: disposeBag)
         
@@ -514,12 +522,20 @@ class QuickMapController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .white
         view.addSubview(mapView)
-        
+        mapView.addSubview(markImageView)
         mapView.snp.makeConstraints { (make) in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.top.equalToSuperview()
             make.bottom.equalToSuperview().offset(-(BottomViewHeight*0.97))
+        }
+        
+        let markSize = 35
+        markImageView.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-markSize/2)
+            make.width.equalTo(markSize)
+            make.height.equalTo(markSize)
         }
         
         valueEditDimView.addSubview(valueEditView)
@@ -586,7 +602,7 @@ class QuickMapController: UIViewController {
         startButton.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
-                let coor = self?.mapView.centerCoordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                let coor = self?.mapView.projection.coordinate(for: self?.mapView.center ?? CGPoint()) ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
                 let address = self?.regionLabel.text ?? ""
                 let distance = self?.getDistanceValue() ?? 0
                 let vm = ToTimeProgressViewModel(address: address, location: coor, distance: distance)
@@ -697,7 +713,7 @@ class QuickMapController: UIViewController {
                 .when(.recognized)
                 .subscribe(onNext: { [weak self] _ in
                     let name = self?.favoriteField.text ?? ""
-                    let coor = self?.mapView.centerCoordinate
+                    let coor = self?.mapView.projection.coordinate(for: self?.mapView.center ?? CGPoint())
                     let address = self?.regionLabel.text ?? ""
                     let data = self?.parseUpdateData(name: name, address: address, iconImageUrl: self?.imageURL ?? "", latitude: coor?.latitude ?? 0, longitude: coor?.longitude ?? 0)
                     
@@ -711,7 +727,7 @@ class QuickMapController: UIViewController {
                 .map { [weak self] _ -> MarkRealm in
                     let identity = "\(Date())"
                     let name = self?.favoriteField.text ?? ""
-                    let coor = self?.mapView.centerCoordinate
+                    let coor = self?.mapView.projection.coordinate(for: self?.mapView.center ?? CGPoint())
                     let address = self?.regionLabel.text ?? ""
                     return MarkRealm(identity: identity, name: name, latitude: coor?.latitude ?? 0, longitude: coor?.longitude ?? 0, address: address, iconImageUrl: self?.imageURL ?? "")
                 }
@@ -764,7 +780,7 @@ class QuickMapController: UIViewController {
             if valueTextField.text == "" {
                 let distance = getValueFromField(valueStr: distanceEditButton.title(for: .normal) ?? "")
                 if distance == 0 {
-                    mapView.removeOverlays(mapView.overlays)
+                    mapView.clear()
                 }
             }
         case .favorite:
@@ -806,7 +822,7 @@ class QuickMapController: UIViewController {
         case .distance:
             if valueTextField.text == "" {
                 distanceEditButton.setTitle(AppString.DistanceEdit.localized(), for: .normal)
-                mapView.removeOverlays(mapView.overlays)
+                mapView.clear()
             } else {
                 let value = valueTextField.text ?? "0"
                 self.setDistanceValue(value: value)
@@ -831,17 +847,6 @@ class QuickMapController: UIViewController {
             self.editOnFavorite()
             editViewState = .on
         }
-    }
-}
-
-extension QuickMapController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let circle = overlay as? MKCircle {
-            let circleRenderer = MKCircleRenderer(overlay: circle)
-            circleRenderer.fillColor = UIColor.blue.withAlphaComponent(0.2)
-            return circleRenderer
-        }
-        return MKOverlayRenderer()
     }
 }
 

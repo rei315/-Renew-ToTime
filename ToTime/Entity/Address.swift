@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import MapKit
+import CoreLocation
 import RxDataSources
 // IdentifiableType, Equatable
 struct Address {

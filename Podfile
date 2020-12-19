@@ -10,13 +10,18 @@ pod 'RxSwift'
 pod 'RxCocoa'
 pod 'Action'
 pod 'RxDataSources'
-pod 'RxCoreData'
-pod 'RxCoreLocation'
-pod 'SnapKit'
-pod "RxMKMapView"
-pod 'Alamofire'
 pod 'RxGesture'
+
+pod 'RxCoreLocation'
+
+pod 'Alamofire'
+
+pod 'SnapKit'
+
 pod 'RealmSwift', '~> 10.2'
+
+pod 'GoogleMaps'
+pod 'RxGoogleMaps'
 
   target 'ToTimeTests' do
     inherit! :search_paths

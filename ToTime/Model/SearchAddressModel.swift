@@ -7,11 +7,10 @@
 
 import Foundation
 import RxSwift
-import MapKit
-import CoreLocation
 import Alamofire
 
 struct SearchAddressModel {
+    
     // MARK: - Helpers
     
     func fetchAddressAutoComplete(address: String) -> Observable<[Place]> {

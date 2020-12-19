@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import SnapKit
-import MapKit
+import CoreLocation
 import RxGesture
 
 private let tvReuseIdentifier = "AddressCell"

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MapKit
+import CoreLocation
 import RxDataSources
 
 struct Mark: IdentifiableType, Equatable {

@@ -18,11 +18,7 @@ class HomeViewModel {
     let model = HomeModel()
     
     // MARK: - Lifecycle
-    
-    init() {
-        
-    }
-    
+
     func fetchBind() {
         model.fetchMark()
             .flatMap{Observable.from($0)}

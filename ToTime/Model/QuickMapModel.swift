@@ -8,7 +8,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import MapKit
 import RxCoreLocation
 import CoreLocation
 import Alamofire
@@ -33,9 +32,9 @@ struct QuickMapModel {
     func configureManager() {
         manager?.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         manager?.pausesLocationUpdatesAutomatically = false
+        manager?.requestAlwaysAuthorization()
     }
-    
-    
+        
     // MARK: - Helpers
     
     func startUpdatingLocation() {

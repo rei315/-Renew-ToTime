@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 import RxSwift
-import MapKit
+import CoreLocation
 
 class AddressCell: UITableViewCell {
     
