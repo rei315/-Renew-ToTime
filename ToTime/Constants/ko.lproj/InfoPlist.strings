@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  ToTime
+
+  Created by 김민국 on 2020/12/20.
+  
+*/
+
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "목적지 도착 알림을 위해 알림 시작시 위치 정보에 항상 접근함";
+"NSLocationAlwaysUsageDescription" = "목적지 도착 알림을 위해 알림 시작시 위치 정보에 항상 접근함";
+"NSLocationWhenInUseUsageDescription" = "목적지 도착 알림을 위해 앱 실행중일때 위치 정보에 접근함";

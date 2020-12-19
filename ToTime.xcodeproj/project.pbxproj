@@ -17,6 +17,7 @@
 		8C1AC93D2584CE3500B7087A /* LocationNotificationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1AC93C2584CE3500B7087A /* LocationNotificationInfo.swift */; };
 		8C1AC9422584CEDD00B7087A /* ToTimeProgressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1AC9412584CEDD00B7087A /* ToTimeProgressController.swift */; };
 		8C1AC9472584CF1600B7087A /* ToTimeProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1AC9462584CF1600B7087A /* ToTimeProgressViewModel.swift */; };
+		8C422029258E730E00B39A10 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C42202B258E730E00B39A10 /* InfoPlist.strings */; };
 		8C42CB0825833E6F000A7BD4 /* IconSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42CB0725833E6F000A7BD4 /* IconSelectorController.swift */; };
 		8C42CB0D25833EAB000A7BD4 /* IconSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42CB0C25833EAB000A7BD4 /* IconSelectorViewModel.swift */; };
 		8C42CB1A2583457E000A7BD4 /* MarkIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C42CB192583457E000A7BD4 /* MarkIconCell.swift */; };
@@ -87,6 +88,9 @@
 		8C1AC93C2584CE3500B7087A /* LocationNotificationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNotificationInfo.swift; sourceTree = "<group>"; };
 		8C1AC9412584CEDD00B7087A /* ToTimeProgressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToTimeProgressController.swift; sourceTree = "<group>"; };
 		8C1AC9462584CF1600B7087A /* ToTimeProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToTimeProgressViewModel.swift; sourceTree = "<group>"; };
+		8C42202A258E730E00B39A10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8C42202F258E734000B39A10 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8C422030258E734400B39A10 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C42CB0725833E6F000A7BD4 /* IconSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectorController.swift; sourceTree = "<group>"; };
 		8C42CB0C25833EAB000A7BD4 /* IconSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSelectorViewModel.swift; sourceTree = "<group>"; };
 		8C42CB192583457E000A7BD4 /* MarkIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkIconCell.swift; sourceTree = "<group>"; };
@@ -353,6 +357,7 @@
 			children = (
 				8CAFD12E2585F93A00FBF0A7 /* Localizable.strings */,
 				8CD69DF4257E36D600A1924C /* App.swift */,
+				8C42202B258E730E00B39A10 /* InfoPlist.strings */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -483,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CAFD12C2585F93A00FBF0A7 /* Localizable.strings in Resources */,
+				8C422029258E730E00B39A10 /* InfoPlist.strings in Resources */,
 				8C43064E257FD09C00332413 /* MarkIcon in Resources */,
 				8C45D813257CF1F7005A350A /* LaunchScreen.storyboard in Resources */,
 				8C45D810257CF1F7005A350A /* Assets.xcassets in Resources */,
@@ -720,6 +726,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8C42202B258E730E00B39A10 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C42202A258E730E00B39A10 /* en */,
+				8C42202F258E734000B39A10 /* ja */,
+				8C422030258E734400B39A10 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		8C45D80C257CF1F6005A350A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
