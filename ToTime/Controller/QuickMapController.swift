@@ -236,7 +236,8 @@ class QuickMapController: UIViewController {
     private func configureMapView() {
         mapView.rx.idleAt
             .map { [weak self] _ in
-                let center = self?.mapView.projection.coordinate(for: self?.mapView.center ?? CGPoint()) ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                let cgCenter = CGPoint(x: self?.mapView.center.x ?? 0, y: self?.mapView.center.y ?? 0 - BottomViewHeight/2)
+                let center = self?.mapView.projection.coordinate(for: cgCenter) ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
                 return CLLocation(latitude: center.latitude, longitude: center.longitude)
             }
             .bind(to: viewModel.didRegionChanged)
@@ -266,7 +267,8 @@ class QuickMapController: UIViewController {
 
         mapView.clear()
         let cllDistance = CLLocationDistance(distance)
-        let circle = GMSCircle(position: mapView.projection.coordinate(for: mapView.center), radius: cllDistance)
+        let center = CGPoint(x: self.mapView.center.x, y: self.mapView.center.y - BottomViewHeight/2)
+        let circle = GMSCircle(position: mapView.projection.coordinate(for: center), radius: cllDistance)
         circle.fillColor = UIColor.red.withAlphaComponent(0.2)
         circle.strokeColor = UIColor.red
         circle.strokeWidth = 1
@@ -522,18 +524,21 @@ class QuickMapController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .white
         view.addSubview(mapView)
+        
+        let mapInsets = UIEdgeInsets(top: 0, left: 0, bottom: BottomViewHeight*0.9, right: 0)
+        mapView.padding = mapInsets
         mapView.addSubview(markImageView)
         mapView.snp.makeConstraints { (make) in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.top.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-(BottomViewHeight*0.97))
+            make.bottom.equalToSuperview()
         }
         
         let markSize = 35
         markImageView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-markSize/2)
+            make.centerY.equalToSuperview().offset(-markSize/2-Int(BottomViewHeight)/2)
             make.width.equalTo(markSize)
             make.height.equalTo(markSize)
         }
@@ -602,7 +607,8 @@ class QuickMapController: UIViewController {
         startButton.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
-                let coor = self?.mapView.projection.coordinate(for: self?.mapView.center ?? CGPoint()) ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                let center = CGPoint(x: self?.mapView.center.x ?? 0, y: self?.mapView.center.y ?? 0 - BottomViewHeight/2)
+                let coor = self?.mapView.projection.coordinate(for: center) ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
                 let address = self?.regionLabel.text ?? ""
                 let distance = self?.getDistanceValue() ?? 0
                 let vm = ToTimeProgressViewModel(address: address, location: coor, distance: distance)
@@ -713,7 +719,8 @@ class QuickMapController: UIViewController {
                 .when(.recognized)
                 .subscribe(onNext: { [weak self] _ in
                     let name = self?.favoriteField.text ?? ""
-                    let coor = self?.mapView.projection.coordinate(for: self?.mapView.center ?? CGPoint())
+                    let center = CGPoint(x: self?.mapView.center.x ?? 0, y: self?.mapView.center.y ?? 0 - BottomViewHeight/2)
+                    let coor = self?.mapView.projection.coordinate(for: center)
                     let address = self?.regionLabel.text ?? ""
                     let data = self?.parseUpdateData(name: name, address: address, iconImageUrl: self?.imageURL ?? "", latitude: coor?.latitude ?? 0, longitude: coor?.longitude ?? 0)
                     
@@ -727,7 +734,8 @@ class QuickMapController: UIViewController {
                 .map { [weak self] _ -> MarkRealm in
                     let identity = "\(Date())"
                     let name = self?.favoriteField.text ?? ""
-                    let coor = self?.mapView.projection.coordinate(for: self?.mapView.center ?? CGPoint())
+                    let center = CGPoint(x: self?.mapView.center.x ?? 0, y: self?.mapView.center.y ?? 0 - BottomViewHeight/2)
+                    let coor = self?.mapView.projection.coordinate(for: center)
                     let address = self?.regionLabel.text ?? ""
                     return MarkRealm(identity: identity, name: name, latitude: coor?.latitude ?? 0, longitude: coor?.longitude ?? 0, address: address, iconImageUrl: self?.imageURL ?? "")
                 }
