@@ -59,7 +59,8 @@ class IconSelectorController: UIViewController {
             
     private func configureCollectionView() {
         viewModel.markIcons
-            .bind(to: collectionView.rx.items(cellIdentifier: reuseIdentifier, cellType: MarkIconCell.self)) { (row, item, cell) in
+            .asDriver()
+            .drive(collectionView.rx.items(cellIdentifier: reuseIdentifier, cellType: MarkIconCell.self)) { (row, item, cell) in
                 cell.configureItem(iconUrl: item)
                 cell.delegate = self
             }

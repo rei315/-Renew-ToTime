@@ -88,7 +88,8 @@ class SearchAddressController: UIViewController {
             .disposed(by: disposeBag)
                 
         viewModel.searchedPlace
-            .bind(to: tableView.rx.items) { tv, row, data in
+            .asDriver(onErrorJustReturn: [])
+            .drive(tableView.rx.items) { tv, row, data in
                 let index = IndexPath(row: row, section: 0)
                 let cell = tv.dequeueReusableCell(withIdentifier: tvReuseIdentifier, for: index) as? AddressCell
                 cell?.configurePlace(place: data)

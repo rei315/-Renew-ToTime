@@ -76,7 +76,7 @@ class HomeController: UIViewController {
     
     private func setupCollectionViewDataSource() {
         viewModel.items
-            .asDriver()
+            .asDriver(onErrorJustReturn: [])
             .drive(collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
