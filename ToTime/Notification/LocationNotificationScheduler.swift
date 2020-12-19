@@ -29,7 +29,7 @@ private extension LocationNotificationScheduler {
     
     func askForNotificationPermissions(notificationInfo: LocationNotificationInfo) {
         UNUserNotificationCenter.current().requestAuthorization(
-            options: [.alert, .sound],
+            options: [.alert, .sound, .badge],
             completionHandler: { [weak self] granted, _ in
                 guard granted else {
                     DispatchQueue.main.async {
