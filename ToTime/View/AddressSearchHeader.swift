@@ -75,7 +75,7 @@ class AddressSearchHeader: UIView {
             make.top.equalToSuperview()
             make.left.equalToSuperview().offset(10)
             make.height.equalToSuperview()
-            make.right.equalTo(searchButton.snp.left).offset(-20)
+            make.right.greaterThanOrEqualTo(searchButton.snp.left).offset(-20)
         }
                         
         searchButton.snp.makeConstraints { (make) in
