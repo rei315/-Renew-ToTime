@@ -1,5 +1,5 @@
 # -Renew-ToTime
-<img width="512" alt="1" src="https://user-images.githubusercontent.com/27776755/102720157-04a2b880-4336-11eb-8b6c-bd9f1d900343.png">
+<img width="256" alt="1" src="https://user-images.githubusercontent.com/27776755/102720157-04a2b880-4336-11eb-8b6c-bd9f1d900343.png">
 
 Renewed Version of ToTime Application
 
@@ -23,8 +23,6 @@ pod install
 
 ## To Do
 1. Create Splash View
-2. Change App Icon
-3. Change Fish Image
 
 ## Critical Issue
 <img width="280" alt="스크린샷 2020-12-14 오후 9 30 01" src="https://user-images.githubusercontent.com/27776755/102081595-d6177000-3e53-11eb-9cbe-c6bf0d406897.png">
