@@ -7,7 +7,7 @@ IOS Application that alerts you when you reach the distance you have set
 
 Languages supported: Korean, English, Japanese
 
-More Information: https://rei-dev.com/project/totime/
+#### More Information: https://rei-dev.com/project/totime/
 
 # Installation
 pod install
