@@ -9,7 +9,7 @@ import Foundation
 
 enum App {}
 extension App {
-    static let GoogleKey = ""
+
 }
 
 enum AppString {}

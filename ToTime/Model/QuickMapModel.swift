@@ -66,7 +66,7 @@ struct QuickMapModel {
         let params: Parameters =
         [
             "latlng":"\(location.coordinate.latitude),\(location.coordinate.longitude)",
-            "key":App.GoogleKey,
+            "key":GoogleKey,
             "location_type": "ROOFTOP"
         ]
         
@@ -96,7 +96,7 @@ struct QuickMapModel {
         let params: Parameters =
         [
             "place_id":placeId,
-            "key":App.GoogleKey
+            "key":GoogleKey
         ]
         
         return Observable.create { observer in

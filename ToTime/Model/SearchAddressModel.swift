@@ -17,7 +17,7 @@ struct SearchAddressModel {
         let params: Parameters =
             [   "input":address,
                 "types":"geocode|establishment",
-                "key":App.GoogleKey
+                "key":GoogleKey
             ]
         
         return Observable.create { observer in
