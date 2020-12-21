@@ -23,6 +23,12 @@ pod install
 5. CoreAnimation
 6. Alamofire -> Google API (Reverse-Geocode, Place-Detail, AutoComplete)
 
+- CI/CD:
+Fastlane, Jenkins 
+-> current for TestFlight
+-> upload to AppStore will be comming soon..
+
+
 ## To Do
 1. Create Splash View
 
