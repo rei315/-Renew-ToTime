@@ -20,8 +20,8 @@
 "QuickMapModifyFavorite" = "Modify Bookmark";
 "QuickMapEditValuePlaceHolder" = "Please enter";
 
-"ToTimeNotificationTitle" = "Arrived at destination";
-"ToTimeNotificationBody" = "Click for more information";
+"ToTimeNotificationTitle" = "Arrived";
+"ToTimeNotificationBody" = "Arrived at destination";
 
 "NotificationPermissionTitle" = "Notification Permission Error";
 "NotificationPermissionBody" = "Please set permissions for notifications";

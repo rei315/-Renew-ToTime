@@ -20,8 +20,8 @@
 "QuickMapModifyFavorite" = "ブックマーク修正";
 "QuickMapEditValuePlaceHolder" = "入力";
 
-"ToTimeNotificationTitle" = "目的地に着きました";
-"ToTimeNotificationBody" = "より多くの情報を閲覧したい場合はクリック";
+"ToTimeNotificationTitle" = "到着";
+"ToTimeNotificationBody" = "目的地に着きました";
 
 "NotificationPermissionTitle" = "通知権限エラー";
 "NotificationPermissionBody" = "通知に対する権限設定をしてください";
