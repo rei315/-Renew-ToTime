@@ -52,6 +52,8 @@ extension AppString {
     static let UpdateComplete = "UpdateComplete"
     static let FavoriteCreated = "FavoriteCreated"
     static let FavoriteUpdated = "FavoriteUpdated"
+    
+    static let TutorialDoneTitle = "TutorialDoneTitle"
 }
 
 enum Url {}
