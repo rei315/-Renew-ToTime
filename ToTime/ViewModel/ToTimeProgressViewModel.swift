@@ -30,6 +30,7 @@ class ToTimeProgressViewModel {
         self.address = address
         self.location = CLLocation(latitude: location.latitude, longitude: location.longitude)
         self.distance = distance
+        
         locationManager = CLLocationManager()
         locationNotificationScheduler = LocationNotificationScheduler()
         configureManager()
@@ -56,7 +57,7 @@ class ToTimeProgressViewModel {
     }
     
     private func configureManager() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.showsBackgroundLocationIndicator = true
         locationManager.pausesLocationUpdatesAutomatically = false
@@ -66,9 +67,9 @@ class ToTimeProgressViewModel {
         locationManager.rx.didUpdateLocations
             .map { $0.locations.last }
             .flatMap(Observable.from(optional: ))
-            .subscribe(onNext: { [weak self] location in
+            .subscribe(onNext: { [weak self] loc in
                 if let setLocation = self?.location, let setDistance = self?.distance  {
-                    let dis = location.distance(from: setLocation)
+                    let dis = loc.distance(from: setLocation)
                     if (dis < Double(setDistance)) {
                         self?.didArrivedLocation.onNext(())
                     }
