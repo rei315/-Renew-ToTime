@@ -198,7 +198,7 @@ class QuickMapController: UIViewController {
     }()
     
     private var imageURL: String = ""
-    
+    private var circle = GMSCircle()
     // MARK: - Lifecycle
     
     init(viewModel: QuickMapViewModel) {
@@ -267,8 +267,11 @@ class QuickMapController: UIViewController {
 
         mapView.clear()
         let cllDistance = CLLocationDistance(distance)
-        let center = CGPoint(x: self.mapView.center.x, y: self.mapView.center.y - BottomViewHeight/2)
-        let circle = GMSCircle(position: mapView.projection.coordinate(for: center), radius: cllDistance)
+        let center = CGPoint(x: self.mapView.center.x , y: self.mapView.center.y - BottomViewHeight/2)
+        let coor = self.mapView.projection.coordinate(for: center)
+        
+        circle.position = coor
+        circle.radius = cllDistance
         circle.fillColor = UIColor.red.withAlphaComponent(0.2)
         circle.strokeColor = UIColor.red
         circle.strokeWidth = 1
@@ -607,13 +610,15 @@ class QuickMapController: UIViewController {
         startButton.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
-                let center = CGPoint(x: self?.mapView.center.x ?? 0, y: self?.mapView.center.y ?? 0 - BottomViewHeight/2)
-                let coor = self?.mapView.projection.coordinate(for: center) ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
-                let address = self?.regionLabel.text ?? ""
-                let distance = self?.getDistanceValue() ?? 0
-                let vm = ToTimeProgressViewModel(address: address, location: coor, distance: distance)
-                let vc = ToTimeProgressController(viewModel: vm)
-                self?.present(vc, animated: true, completion: nil)
+//                let center = CGPoint(x: self?.mapView.center.x ?? 0, y: self?.mapView.center.y ?? 0 - BottomViewHeight/2)
+//                let coor = self?.mapView.projection.coordinate(for: center) ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                if let coor = self?.circle.position {
+                    let address = self?.regionLabel.text ?? ""
+                    let distance = self?.getDistanceValue() ?? 0
+                    let vm = ToTimeProgressViewModel(address: address, location: coor, distance: distance)
+                    let vc = ToTimeProgressController(viewModel: vm)
+                    self?.present(vc, animated: true, completion: nil)
+                }
             })
             .disposed(by: disposeBag)
         
