@@ -45,28 +45,6 @@ class HomeController: UIViewController {
         return cv
     }()
     
-    private let tutorialView: UIScrollView = {
-        let sv = UIScrollView()
-        sv.backgroundColor = .white
-        return sv
-    }()
-    private let tutorialPage: UIPageControl = {
-        let pc = UIPageControl()
-        pc.pageIndicatorTintColor = UIColor.middleBlue
-        pc.currentPageIndicatorTintColor = UIColor.systemOrange
-        return pc
-    }()
-    private let tutorialDoneButton: UIButton = {
-        let bt = UIButton()
-        bt.backgroundColor = UIColor.systemOrange
-        bt.layer.cornerRadius = 8
-        bt.tintColor = .white
-        bt.setTitle(AppString.TutorialDoneTitle.localized(), for: .normal)
-        return bt
-    }()
-    
-    private var tutorialImages: [UIImage] = []
-    
     private let viewModel = HomeViewModel()
     private let disposeBag = DisposeBag()
     
@@ -94,121 +72,10 @@ class HomeController: UIViewController {
         let lanchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if !lanchedBefore {
             UserDefaults.standard.setValue(true, forKey: "launchedBefore")
-            configureTutorialView()
+            let tvc = TutorialController()
+            tvc.modalPresentationStyle = .fullScreen
+            self.present(tvc, animated: true, completion: nil)
         }        
-    }
-    
-    
-    // MARK: - TutorialView
-    
-    private func configureTutorialView() {
-                
-        view.addSubview(tutorialView)
-        view.addSubview(tutorialPage)
-        
-        switch Locale.current.languageCode {
-        case "en":
-            tutorialImages.append(UIImage(named: "tutorial_eng_1") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_eng_2") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_eng_3") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_eng_4") ?? UIImage())
-        case "ko":
-            tutorialImages.append(UIImage(named: "tutorial_ko_1") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_ko_2") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_ko_3") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_ko_4") ?? UIImage())
-        case "ja":
-            tutorialImages.append(UIImage(named: "tutorial_ja_1") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_ja_2") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_ja_3") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_ja_4") ?? UIImage())
-        case .none:
-            tutorialImages.append(UIImage(named: "tutorial_eng_1") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_eng_2") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_eng_3") ?? UIImage())
-            tutorialImages.append(UIImage(named: "tutorial_eng_4") ?? UIImage())
-            break
-        case .some(_):
-            break
-        }
-        
-        let pageWidth = self.view.frame.width
-        tutorialView.isPagingEnabled = true
-        tutorialView.showsHorizontalScrollIndicator = false
-        
-        tutorialView.contentSize = CGSize(width: CGFloat(tutorialImages.count) * self.view.frame.maxX, height: 0)
-        tutorialView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-        tutorialImages.enumerated().forEach { index, image in
-            let backView = UIView()
-            let iv = UIImageView()
-            iv.image = image
-            iv.contentMode = .scaleAspectFit            
-            backView.addSubview(iv)
-            
-            tutorialView.addSubview(backView)
-            
-            let offset = CGFloat(index) * pageWidth
-            
-            backView.snp.makeConstraints { (make) in
-                make.width.equalTo(view.frame.width)
-                make.height.equalTo(view.frame.height)
-                make.left.equalTo(tutorialView).offset(offset)
-                make.centerY.equalToSuperview()
-            }
-            
-            iv.snp.makeConstraints { (make) in
-                make.bottom.equalToSuperview()
-                make.top.equalTo(tutorialPage.snp.bottom).offset(10)
-                make.centerX.equalToSuperview()
-            }
-        }
-        tutorialPage.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(70)
-        }
-        
-        
-        Observable.just(tutorialImages.count)
-            .bind(to: tutorialPage.rx.numberOfPages)
-            .disposed(by: disposeBag)
-        
-        let page = tutorialView.rx.didScroll
-            .withLatestFrom(tutorialView.rx.contentOffset)
-            .map { Int(round($0.x / pageWidth)) }
-            .share()
-        
-        page
-            .distinctUntilChanged()
-            .subscribe(onNext: { [unowned self] page in
-                if page == self.tutorialImages.count - 1 {
-                    view.addSubview(tutorialDoneButton)
-                    
-                    tutorialDoneButton.snp.makeConstraints { (make) in
-                        make.centerX.equalToSuperview()
-                        make.bottom.equalToSuperview().offset(-100)
-                        make.width.equalToSuperview().multipliedBy(0.4)
-                        make.height.equalTo(50)
-                    }
-                } else {
-                    tutorialDoneButton.removeFromSuperview()
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        page
-            .bind(to: tutorialPage.rx.currentPage)
-            .disposed(by: disposeBag)
-        
-        tutorialDoneButton.rx.tapGesture()
-            .when(.recognized)
-            .subscribe(onNext: { [unowned self] _ in
-                tutorialView.removeFromSuperview()
-                tutorialPage.removeFromSuperview()
-                tutorialDoneButton.removeFromSuperview()
-            })
-            .disposed(by: disposeBag)
     }
     
     // MARK: - Favorites CollectionView
