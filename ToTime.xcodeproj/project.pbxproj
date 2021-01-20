@@ -27,7 +27,6 @@
 		8C430619257F87F100332413 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C430618257F87F100332413 /* CornerView.swift */; };
 		8C43064E257FD09C00332413 /* MarkIcon in Resources */ = {isa = PBXBuildFile; fileRef = 8C43064D257FD09C00332413 /* MarkIcon */; };
 		8C45D807257CF1F6005A350A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D806257CF1F6005A350A /* AppDelegate.swift */; };
-		8C45D809257CF1F6005A350A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D808257CF1F6005A350A /* SceneDelegate.swift */; };
 		8C45D80E257CF1F6005A350A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C45D80C257CF1F6005A350A /* Main.storyboard */; };
 		8C45D813257CF1F7005A350A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C45D811257CF1F7005A350A /* LaunchScreen.storyboard */; };
 		8C45D81E257CF1F7005A350A /* ToTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45D81D257CF1F7005A350A /* ToTimeTests.swift */; };
@@ -103,7 +102,6 @@
 		8C43064D257FD09C00332413 /* MarkIcon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MarkIcon; sourceTree = "<group>"; };
 		8C45D803257CF1F6005A350A /* ToTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C45D806257CF1F6005A350A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8C45D808257CF1F6005A350A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8C45D80D257CF1F6005A350A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C45D812257CF1F7005A350A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C45D814257CF1F7005A350A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 				8C45D846257CF220005A350A /* Model */,
 				8C45D841257CF21B005A350A /* ViewModel */,
 				8C45D806257CF1F6005A350A /* AppDelegate.swift */,
-				8C45D808257CF1F6005A350A /* SceneDelegate.swift */,
 				8C45D80C257CF1F6005A350A /* Main.storyboard */,
 				8C45D811257CF1F7005A350A /* LaunchScreen.storyboard */,
 				8C45D814257CF1F7005A350A /* Info.plist */,
@@ -690,7 +687,6 @@
 				8C42CB272583811B000A7BD4 /* MarkRealm.swift in Sources */,
 				8C1AC9332584C54900B7087A /* LocationNotificationScheduler.swift in Sources */,
 				8C430619257F87F100332413 /* CornerView.swift in Sources */,
-				8C45D809257CF1F6005A350A /* SceneDelegate.swift in Sources */,
 				8C45D866257CF255005A350A /* HomeController.swift in Sources */,
 				8C45D84E257CF23E005A350A /* HomeViewModel.swift in Sources */,
 				8C45D86B257CF25A005A350A /* UIColor+Extension.swift in Sources */,
