@@ -19,9 +19,11 @@ pod install
 
 ## Using
 - Architecture: MVVM
+<br></br>
 
 - Framework:
 1. RxSwift
+<br></br>
 
 - Library : 
 1. SnapKit
@@ -29,6 +31,7 @@ pod install
 3. RealmSwift
 4. CoreAnimation
 5. Alamofire -> Google API (Reverse-Geocode, Place-Detail, AutoComplete)
+<br></br>
 
 - CI/CD:
 Fastlane, Jenkins 
