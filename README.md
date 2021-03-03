@@ -20,20 +20,22 @@ pod install
 ## Using
 - Architecture: MVVM
 
-- Library : 
+- Framework:
 1. RxSwift
-2. SnapKit
-3. CoreLocation
-4. RealmSwift
-5. CoreAnimation
-6. Alamofire -> Google API (Reverse-Geocode, Place-Detail, AutoComplete)
+
+- Library : 
+1. SnapKit
+2. CoreLocation
+3. RealmSwift
+4. CoreAnimation
+5. Alamofire -> Google API (Reverse-Geocode, Place-Detail, AutoComplete)
 
 - CI/CD:
 Fastlane, Jenkins 
--> current for TestFlight
--> upload to AppStore will be comming soon..
-
+-> Uploading TestFlight
+-> Version Control
+-> Extract IPA
 
 
 <br></br>
-#### "Icon made by Swifticons from www.flaticon.com"
+##### "Icon made by Swifticons from www.flaticon.com"
